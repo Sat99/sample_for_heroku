@@ -7,37 +7,69 @@
         <script src="jquery-3.2.1.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="script.js"></script>
+        <style>
+            .outer{
+        width: 900px;
+        margin: auto;
+    }
+    .Room{
+        width: 800px;
+        margin: 5px;
+        float: left;
+    }
+
+    .messages{
+        width: 600px;
+        margin:5px;
+        height: 300px;
+        background-color:lightcyan;
+    }
+    .txt-send{
+        width: 300px;
+        margin:5px;
+    }
+        </style>
     </head>
     <body>
+        <div class="outer">
         <h1>GapShAPP</h1>
         <div id="login-div">
             <input placeholder="username" type="text" id="loginbox">
             <button id="loginbtn">LOGIN</button>
         </div>
-        <div id="chat-div" style="display: none">
-            <div id = "Room1">
+         <div id="chat-div" style="display: none">  
+            <div class = "Room" id="Room1">
                 <h1>ROOM-1</h1>
-                <div>
-                        <input placeholder="new message" type="text" id="msgbox1">
+                 <div class="messages" id="messages1">
+                     <ul id="mssgList1">
+                         
+                     </ul>
+                 </div>
+                <form>
+                        <input placeholder="new message" type="text" id="msgbox1" class="txt-send">
                         <button id="sendmsg1">SEND</button>
-                        <ul id="msglist1"></ul>
-                </div>
-               
-
-            </div>
-
-            <div id = "Room2">
+                        
+                </form>
+                <div>
+            <div class = "Room"  id="Room2">
                     <h1>ROOM-2</h1>
-                    <div>
-                            <input placeholder="new message" type="text" id="msgbox2">
-                            <button id="sendmsg2">SEND</button>
-                            <ul id="msglist2"></ul>
+                    <div class="messages" id="messages2">
+                        <ul id="mssgList2">
+                         
+                        </ul>
                     </div>
+                    <form>
+                            <input placeholder="new message" type="text" id="msgbox2" class="txt-send">
+                            <button id="sendmsg2">SEND</button>
+                            
+                    </form>
+                            
+                    
                    
     
                 </div>
             
         </div>
-        
+    </div>
     </body>
 </html>
