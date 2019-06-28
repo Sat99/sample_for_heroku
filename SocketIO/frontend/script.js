@@ -17,6 +17,7 @@ $(function () {
                
     })
     socket.on("new_user", function(data){
+        //online notification
         msglist.append($('<li>' + data +" is online" + '</li>'))
     })
     sendbtn.click(function () {
