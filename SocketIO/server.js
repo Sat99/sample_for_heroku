@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
 
     socket.on('login', (data) => {
         // username is in data.user
-        usersockets[socket.id] = data.user
+        usersockets[data.user] = socket.id;
         //for signalling the connection of new user
         //socket.broadcast.emit("new_user",data.user)
         console.log(usersockets)
@@ -40,12 +40,15 @@ io.on('connection', (socket) => {
             //data.message = "@a: hello"
             // split at :, then remove @ from beginning
             let recipient = data.message.split(':')[0].substr(1)
-            let rcptSocket = recipient;
+            let rcptSocket = usersockets[recipient];
+            //send message to all
+            //data.message = "@a: hello"
+            // split at :, then remove @ from beginning
             //send message to all
             io.to(rcptSocket).emit('recv_msg1', data)
         } else {
             io.sockets.in("Room1").emit('recv_msg1', data)            
-        }
+        } 
     })
 
     socket.on('send_msg2', (data) => {
