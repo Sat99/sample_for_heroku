@@ -22,6 +22,12 @@ io.on('connection', (socket) => {
         socket.broadcast.emit("new_user",data.user)
         console.log(usersockets)
     })
+
+    socket.on("typing",function(data){
+
+       socket.broadcast.emit("typer",data.user)
+    })
+
     
     socket.on('send_msg', (data) => {
         // if we use io.emit, everyone gets it

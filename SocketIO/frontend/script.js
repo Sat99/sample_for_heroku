@@ -9,7 +9,8 @@ $(function () {
     let loginbtn = $('#loginbtn')
     let loginDiv = $('#login-div')
     let chatDiv = $('#chat-div')
-
+    let showty =$('#showty')
+    let typediv =$('#typediv')
     let user = ''
 
     socket.on('connected', () => {
@@ -24,7 +25,31 @@ $(function () {
             user: user,
             message: msgbox.val()
         })
+        
     })
+
+    $( msgbox ).keydown(function() {        /*to indicate that a key is pressed*/
+     socket.emit("typing",{user:user})
+    })
+
+    socket.on("typer",function(data){
+        
+        if($(showty).is(":hidden")){
+            $(showty).show()
+                      if ( $(showty).text().length == 0 ) {     /*check if the div is empty or not*/
+                         
+                         typediv.append($('<li>'+ data+ " is typing..." +'</li>'))
+                      }
+                     
+        
+                } else{
+                   
+                    
+                }
+        
+    })
+     /*$("#showty").hide();*/
+
 
     loginbtn.click(function () {
         user = loginbox.val()
@@ -36,6 +61,7 @@ $(function () {
     })
 
     socket.on('recv_msg', function (data) {
+        $(showty).hide()
         msglist.append($('<li>' + data.user + ': ' + data.message + '</li>'))
     })
 })
